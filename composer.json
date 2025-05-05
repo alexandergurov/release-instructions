@@ -1,0 +1,42 @@
+{
+    "name": "wordpress/release-instructions",
+    "description": "Automated custom code deployment for WordPress. Example, migrate custom taxonomy, update records in a database, etc.",
+    "type": "wordpress-plugin",
+    "require": {
+      "ext-json": "*"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "0.7.*",
+        "squizlabs/php_codesniffer": "3.*",
+        "roave/security-advisories": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Firstname Lastname",
+            "email": "mail@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ReleaseInstructions\\": "includes",
+            "ReleaseInstructions\\Tools\\": "includes/Tools",
+            "ReleaseInstructions\\Command\\": "includes/Command"
+        }
+    },
+    "config": {
+        "process-timeout": 0
+    },
+    "scripts": {
+        "phpcs": [
+            "./vendor/bin/phpcs --standard=PSR12 --ignore=*/.github/*,*/vendor/* --extensions=php,inc  --exclude=PSR1.Files.SideEffects -vs ./"
+        ],
+        "phpcbf": [
+            "./vendor/bin/phpcbf --standard=PSR12 --ignore=*/.github/*,*/vendor/* --extensions=php,inc --exclude=PSR1.Files.SideEffects -vs ./"
+        ],
+        "scripts-descriptions": {
+            "phpcs": "Sniffs code.",
+            "phpcbf": "Fixes code."
+        }
+    },
+    "license": "GPLv3"
+}
